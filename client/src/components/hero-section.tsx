@@ -11,7 +11,7 @@ export function HeroSection() {
   };
 
   return (
-    <section id="home" className="pt-20 min-h-screen flex items-center bg-gradient-to-br from-blue-50 to-white dark:bg-gray-900">
+    <section id="home" className="pt-20 min-h-screen flex items-center bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
