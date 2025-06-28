@@ -75,10 +75,7 @@ export function ContactSection() {
     },
   ];
 
-  const navigationLinks = [
-    ["Our Team", "Career", "About us", "Testimonial"],
-    ["FAQ", "User Terms & Conditions", "Privacy Policy"],
-  ];
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -101,7 +98,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-8 sm:px-12 lg:px-16">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 40 }}
@@ -145,21 +142,7 @@ export function ContactSection() {
               </div>
             </div>
 
-            <motion.div
-              variants={itemVariants}
-              className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground p-8 rounded-2xl"
-            >
-              <h4 className="text-xl font-bold mb-4">Navigation</h4>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                {navigationLinks.map((column, columnIndex) => (
-                  <div key={columnIndex} className="space-y-2">
-                    {column.map((link, linkIndex) => (
-                      <div key={linkIndex}>{link}</div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-muted/50 dark:bg-muted/20 p-8 rounded-2xl border">

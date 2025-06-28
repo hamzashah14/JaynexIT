@@ -62,7 +62,7 @@ export function WhyChooseUsSection() {
         <div className="text-9xl font-bold">TRUST US</div>
       </div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-8xl mx-auto px-8 sm:px-12 lg:px-16 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Content */}
           <motion.div
@@ -81,15 +81,7 @@ export function WhyChooseUsSection() {
               </h2>
             </div>
 
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block"
-            >
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold">
-                Get A Quote
-              </Button>
-            </motion.div>
+
 
             {/* Team Image */}
             <motion.div
@@ -145,6 +137,21 @@ export function WhyChooseUsSection() {
                 </p>
               </motion.div>
             ))}
+            
+            {/* Get Quote Button in Grid */}
+            <motion.div
+              variants={itemVariants}
+              className="col-span-2 flex justify-center mt-4"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold">
+                  Get A Quote
+                </Button>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

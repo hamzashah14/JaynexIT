@@ -16,7 +16,7 @@ export function InfiniteCarousel() {
   const duplicatedServices = [...services, ...services, ...services, ...services];
 
   return (
-    <div className="relative bg-blue-600 py-6 overflow-hidden">
+    <div className="relative bg-blue-600 py-4 overflow-hidden">
       {/* Left Blur - theme aware */}
       <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-gray-50 via-gray-50/80 to-transparent dark:from-gray-900 dark:via-gray-900/80 dark:to-transparent z-10 pointer-events-none"></div>
       
@@ -43,7 +43,7 @@ export function InfiniteCarousel() {
             key={index}
             className="flex items-center flex-shrink-0 mx-6"
           >
-            <span className="text-white text-xl font-semibold px-4 whitespace-nowrap">
+            <span className="text-white text-lg font-medium px-4 whitespace-nowrap">
               {service}
             </span>
             <span className="text-white/60 text-2xl mx-4">✦</span>

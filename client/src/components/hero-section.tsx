@@ -12,7 +12,7 @@ export function HeroSection() {
 
   return (
     <section id="home" className="pt-20 min-h-screen flex items-center bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="max-w-8xl mx-auto px-8 sm:px-12 lg:px-16 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}

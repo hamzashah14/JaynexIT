@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, ChevronDown, Monitor, Smartphone, Palette, Database, Shield, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useThemeContext } from "./theme-provider";
 
 export function Navbar() {
@@ -11,10 +17,41 @@ export function Navbar() {
   const navItems = [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
-    { href: "#services", label: "Services" },
-    { href: "#why-choose-us", label: "Why Us" },
-    { href: "#testimonials", label: "Testimonials" },
+    { href: "#portfolio", label: "Portfolio" },
     { href: "#contact", label: "Contact" },
+  ];
+
+  const services = [
+    {
+      icon: Monitor,
+      title: "Website Development",
+      description: "Custom websites built with modern technologies",
+    },
+    {
+      icon: Smartphone,
+      title: "Mobile App Development",
+      description: "Native and cross-platform mobile applications",
+    },
+    {
+      icon: Palette,
+      title: "UI/UX Design",
+      description: "User-centered design solutions",
+    },
+    {
+      icon: Database,
+      title: "Data Analytics",
+      description: "Transform data into actionable insights",
+    },
+    {
+      icon: Shield,
+      title: "Cybersecurity",
+      description: "Comprehensive security solutions",
+    },
+    {
+      icon: Zap,
+      title: "Performance Optimization",
+      description: "Enhance application performance",
+    },
   ];
 
   const scrollToSection = (href: string) => {
@@ -31,8 +68,8 @@ export function Navbar() {
       animate={{ y: 0 }}
       className="fixed top-0 w-full z-50 glassmorphism transition-all duration-300"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 ml-[5px] mr-[5px] mt-[0px] mb-[0px]">
+      <div className="max-w-8xl mx-auto px-8 sm:px-12 lg:px-16">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -42,8 +79,10 @@ export function Navbar() {
           >
             <button
               onClick={() => scrollToSection("#home")}
-              className="text-2xl font-bold gradient-text"
-            >JAYNEX  IT</button>
+              className="text-2xl font-bold"
+            >
+              JAYNEX  <span className="text-white dark:text-black">IT</span>
+            </button>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -61,11 +100,48 @@ export function Navbar() {
                   {item.label}
                 </motion.button>
               ))}
+              
+              {/* Services Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <motion.button
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="hover:text-primary transition-colors duration-200 text-foreground flex items-center gap-1"
+                  >
+                    Services <ChevronDown className="h-4 w-4" />
+                  </motion.button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-96 p-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    {services.map((service) => (
+                      <DropdownMenuItem key={service.title} className="p-3 cursor-pointer">
+                        <div className="flex items-start space-x-3">
+                          <service.icon className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                          <div>
+                            <div className="font-semibold text-sm">{service.title}</div>
+                            <div className="text-xs text-muted-foreground">{service.description}</div>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
 
-          {/* Dark Mode Toggle & Mobile Menu */}
+          {/* Get Quote Button, Dark Mode Toggle & Mobile Menu */}
           <div className="flex items-center space-x-4">
+            {/* Get Quote Button */}
+            <Button
+              onClick={() => scrollToSection("#contact")}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full"
+            >
+              Get a Quote
+            </Button>
+            
             {/* Dark Mode Toggle */}
             <Button
               variant="ghost"
