@@ -66,9 +66,9 @@ export function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg transition-all duration-300"
+      className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl z-50 glassmorphism rounded-2xl shadow-lg transition-all duration-300"
     >
-      <div className="max-w-8xl mx-auto px-8 sm:px-12 lg:px-16">
+      <div className="px-6 sm:px-8 lg:px-10">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <motion.div
@@ -84,7 +84,7 @@ export function Navbar() {
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Zap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-blue-600">JAYNEX</span><span className="text-gray-900 dark:text-white">IT</span>
+              <span className="text-blue-600">JAYNEX</span><span className="text-foreground">IT</span>
             </button>
           </motion.div>
 
@@ -98,7 +98,7 @@ export function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
                   onClick={() => scrollToSection(item.href)}
-                  className="hover:text-blue-600 transition-colors duration-200 text-gray-700 dark:text-gray-300"
+                  className="hover:text-blue-600 transition-colors duration-200 text-foreground"
                 >
                   {item.label}
                 </motion.button>
@@ -110,7 +110,7 @@ export function Navbar() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="hover:text-blue-600 transition-colors duration-200 text-gray-700 dark:text-gray-300 flex items-center gap-1"
+                  className="hover:text-blue-600 transition-colors duration-200 text-foreground flex items-center gap-1"
                 >
                   Services <ChevronDown className="h-4 w-4" />
                 </motion.button>
@@ -221,7 +221,7 @@ export function Navbar() {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg rounded-2xl mt-2 shadow-xl border border-gray-200 dark:border-gray-700">
+              <div className="px-2 pt-2 pb-3 space-y-1 glassmorphism rounded-2xl mt-2 shadow-xl">
                 {navItems.map((item, index) => (
                   <motion.button
                     key={item.href}
@@ -232,7 +232,7 @@ export function Navbar() {
                       scrollToSection(item.href);
                       setIsMenuOpen(false);
                     }}
-                    className="block w-full text-left px-3 py-2 hover:text-blue-600 transition-colors duration-200 text-gray-700 dark:text-gray-300"
+                    className="block w-full text-left px-3 py-2 hover:text-blue-600 transition-colors duration-200 text-foreground"
                   >
                     {item.label}
                   </motion.button>
@@ -240,11 +240,11 @@ export function Navbar() {
                 
                 {/* Services Menu for Mobile */}
                 <div className="border-t border-border pt-2 mt-2">
-                  <div className="text-sm font-semibold px-3 py-2 text-gray-600 dark:text-gray-400">Services</div>
+                  <div className="text-sm font-semibold px-3 py-2 text-muted-foreground">Services</div>
                   {services.map((service, index) => (
                     <button
                       key={service.title}
-                      className="block w-full text-left px-6 py-2 text-sm hover:text-blue-600 transition-colors duration-200 text-gray-600 dark:text-gray-400"
+                      className="block w-full text-left px-6 py-2 text-sm hover:text-blue-600 transition-colors duration-200 text-muted-foreground"
                     >
                       {service.title}
                     </button>
