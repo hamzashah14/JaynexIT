@@ -164,9 +164,7 @@ export function AboutSection() {
               <div className="text-3xl font-script text-gray-800 dark:text-gray-200 italic">
                 Jenny Alexander
               </div>
-              <div className="text-sm text-gray-500 mt-1">
-                Jenny Alexander • CEO
-              </div>
+              <div className="text-sm text-gray-500 mt-1">Usman Jolaha • CEO</div>
             </motion.div>
           </motion.div>
         </motion.div>
