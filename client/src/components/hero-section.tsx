@@ -12,7 +12,7 @@ export function HeroSection() {
   return (
     <section 
       id="home" 
-      className="relative pt-20 min-h-screen flex items-center bg-cover bg-center bg-no-repeat"
+      className="relative pt-24 min-h-screen flex items-center bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
       }}
@@ -21,8 +21,8 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40"></div>
       
       {/* Content */}
-      <div className="relative z-10 max-w-8xl mx-auto px-8 sm:px-12 lg:px-16 py-20">
-        <div className="max-w-3xl text-left">
+      <div className="relative z-10 w-full px-8 sm:px-12 lg:px-16 py-20">
+        <div className="max-w-4xl text-left">
           {/* Small tagline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -82,22 +82,6 @@ export function HeroSection() {
             </Button>
           </motion.div>
         </div>
-      </div>
-
-      {/* Bottom Services Scroll */}
-      <div className="absolute bottom-0 left-0 right-0 bg-blue-600 py-4 overflow-hidden">
-        <motion.div
-          animate={{ x: [-100, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="flex whitespace-nowrap text-white text-lg font-medium"
-        >
-          <span className="mx-8">✦ Website Development</span>
-          <span className="mx-8">✦ UX/UI Design</span>
-          <span className="mx-8">✦ Graphics Design</span>
-          <span className="mx-8">✦ Website Development</span>
-          <span className="mx-8">✦ UX/UI Design</span>
-          <span className="mx-8">✦ Graphics Design</span>
-        </motion.div>
       </div>
     </section>
   );
