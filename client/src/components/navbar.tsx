@@ -43,9 +43,7 @@ export function Navbar() {
             <button
               onClick={() => scrollToSection("#home")}
               className="text-2xl font-bold gradient-text"
-            >
-              TechFlow
-            </button>
+            >JAYNEX  IT</button>
           </motion.div>
 
           {/* Desktop Navigation */}
