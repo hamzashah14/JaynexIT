@@ -79,9 +79,12 @@ export function Navbar() {
           >
             <button
               onClick={() => scrollToSection("#home")}
-              className="text-2xl font-bold"
+              className="flex items-center gap-2 text-2xl font-bold"
             >
-              JAYNEX  <span className="text-white dark:text-black">IT</span>
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <Zap className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-blue-600">JAYNEX</span><span className="text-white dark:text-black">IT</span>
             </button>
           </motion.div>
 
@@ -102,21 +105,21 @@ export function Navbar() {
               ))}
               
               {/* Services Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <motion.button
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="hover:text-primary transition-colors duration-200 text-foreground flex items-center gap-1"
-                  >
-                    Services <ChevronDown className="h-4 w-4" />
-                  </motion.button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-96 p-4">
+              <div className="relative group">
+                <motion.button
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="hover:text-primary transition-colors duration-200 text-foreground flex items-center gap-1"
+                >
+                  Services <ChevronDown className="h-4 w-4" />
+                </motion.button>
+                
+                {/* Hover Dropdown */}
+                <div className="absolute top-full left-0 mt-2 w-96 bg-background border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-4">
                   <div className="grid grid-cols-2 gap-4">
                     {services.map((service) => (
-                      <DropdownMenuItem key={service.title} className="p-3 cursor-pointer">
+                      <div key={service.title} className="p-3 cursor-pointer hover:bg-muted rounded-lg transition-colors">
                         <div className="flex items-start space-x-3">
                           <service.icon className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                           <div>
@@ -124,11 +127,11 @@ export function Navbar() {
                             <div className="text-xs text-muted-foreground">{service.description}</div>
                           </div>
                         </div>
-                      </DropdownMenuItem>
+                      </div>
                     ))}
                   </div>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                </div>
+              </div>
             </div>
           </div>
 

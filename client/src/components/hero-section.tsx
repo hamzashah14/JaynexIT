@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
@@ -11,94 +10,94 @@ export function HeroSection() {
   };
 
   return (
-    <section id="home" className="pt-20 min-h-screen flex items-center bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-8xl mx-auto px-8 sm:px-12 lg:px-16 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section 
+      id="home" 
+      className="relative pt-20 min-h-screen flex items-center bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
+      }}
+    >
+      {/* Background Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40"></div>
+      
+      {/* Content */}
+      <div className="relative z-10 max-w-8xl mx-auto px-8 sm:px-12 lg:px-16 py-20">
+        <div className="max-w-3xl">
+          {/* Small tagline */}
           <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-6"
+          >
+            <span className="text-blue-400 text-lg font-medium">/// Experience The Best IT Solutions</span>
+          </motion.div>
+
+          {/* Main heading */}
+          <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-8"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white mb-8"
           >
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-6xl font-bold leading-tight"
-            >
-              Where <span className="gradient-text">Creativity</span>
-              <br />
-              Meets Cutting-Edge
-              <br />
-              <span className="gradient-text">Technology</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl text-muted-foreground leading-relaxed"
-            >
-              We transform your digital vision into reality with innovative solutions that drive growth and success. Experience the perfect blend of design and technology.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <Button
-                size="lg"
-                onClick={() => scrollToSection("#about")}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Explore More <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => scrollToSection("#services")}
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold transition-all duration-300"
-              >
-                View Services
-              </Button>
-            </motion.div>
-          </motion.div>
+            Where <span className="text-blue-400">Creativity</span>
+            <br />
+            Meets Cutting-Edge
+            <br />
+            Technology
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10 max-w-2xl"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore.
+          </motion.p>
+
+          {/* Buttons */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="relative"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4"
           >
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            <Button
+              size="lg"
+              onClick={() => scrollToSection("#about")}
+              className="bg-blue-600 hover:bg-blue-700 text-white border-0 h-14 px-8 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg"
             >
-              <img
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
-                alt="Team collaborating on creative technology solutions"
-                className="rounded-2xl shadow-2xl w-full"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20, y: 20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-6 rounded-xl shadow-lg"
+              Explore More →
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => scrollToSection("#services")}
+              className="h-14 px-8 text-lg font-semibold border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300 rounded-lg bg-transparent"
             >
-              <div className="text-center">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.2, type: "spring" }}
-                  className="text-3xl font-bold"
-                >
-                  500+
-                </motion.div>
-                <div className="text-sm">Projects Completed</div>
-              </div>
-            </motion.div>
+              View All Services
+            </Button>
           </motion.div>
         </div>
+      </div>
+
+      {/* Bottom Services Scroll */}
+      <div className="absolute bottom-0 left-0 right-0 bg-blue-600 py-4 overflow-hidden">
+        <motion.div
+          animate={{ x: [-100, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="flex whitespace-nowrap text-white text-lg font-medium"
+        >
+          <span className="mx-8">✦ Website Development</span>
+          <span className="mx-8">✦ UX/UI Design</span>
+          <span className="mx-8">✦ Graphics Design</span>
+          <span className="mx-8">✦ Website Development</span>
+          <span className="mx-8">✦ UX/UI Design</span>
+          <span className="mx-8">✦ Graphics Design</span>
+        </motion.div>
       </div>
     </section>
   );

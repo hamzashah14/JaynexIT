@@ -110,49 +110,49 @@ export function WhyChooseUsSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Features Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            className="grid grid-cols-2 gap-8"
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                variants={itemVariants}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="text-center space-y-4"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-16 h-16 bg-gray-800 rounded-2xl flex items-center justify-center mx-auto border border-gray-700"
-                >
-                  <feature.icon className="h-8 w-8 text-blue-400" />
-                </motion.div>
-                <h3 className="text-xl font-bold">{feature.title}</h3>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
-            
-            {/* Get Quote Button in Grid */}
+          {/* Right Side - Get Quote Button & Features Grid */}
+          <div className="space-y-8">
+            {/* Get Quote Button */}
             <motion.div
-              variants={itemVariants}
-              className="col-span-2 flex justify-center mt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex justify-start"
             >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold">
-                  Get A Quote
-                </Button>
-              </motion.div>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl">
+                Get A Quote
+              </button>
             </motion.div>
-          </motion.div>
+
+            {/* Features Grid */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid grid-cols-2 gap-8"
+            >
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  variants={itemVariants}
+                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                  className="text-center space-y-4"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-16 h-16 bg-gray-800 rounded-2xl flex items-center justify-center mx-auto border border-gray-700"
+                  >
+                    <feature.icon className="h-8 w-8 text-blue-400" />
+                  </motion.div>
+                  <h3 className="text-xl font-bold">{feature.title}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

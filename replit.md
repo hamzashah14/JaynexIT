@@ -121,7 +121,21 @@ TechFlow is a modern digital agency website built with a full-stack TypeScript a
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes
+
+### June 28, 2025 - Design Updates & Feature Enhancements
+✓ Updated logo with blue "JAYNEX" and IT company icon (lightning bolt in blue box)
+✓ Changed Services navigation from click to hover-based dropdown
+✓ Redesigned Hero section with full background image overlay and "Experience The Best IT Solutions" tagline
+✓ Updated button styling to match reference design (blue primary, white outline)
+✓ Added scrolling services ticker at bottom of hero section
+✓ Moved "Get A Quote" button to top of features grid in Why Trust Us section
+✓ Enhanced testimonials with blue gradient side effects and improved pause/resume functionality
+✓ Added world map with vector arrow and "Here we are" banner to contact section
+✓ Increased page margins across all sections (max-w-8xl, px-8/12/16)
+✓ Implemented two-row infinite testimonials carousel with hover stop functionality
+
 ## Changelog
 
-Changelog:
-- June 28, 2025. Initial setup
+### Initial Development
+- June 28, 2025: Initial TechFlow landing page setup with full-stack architecture

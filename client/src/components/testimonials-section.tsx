@@ -107,16 +107,20 @@ export function TestimonialsSection() {
         </motion.div>
 
         <div 
-          className="space-y-8"
+          className="relative space-y-8"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
+          {/* Blue gradient effects on sides */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-blue-600/20 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-blue-600/20 to-transparent z-10 pointer-events-none"></div>
+          
           {/* First Row - Moving Right to Left */}
           <div className="relative overflow-hidden">
             <motion.div
               className="flex"
               animate={{
-                x: isPaused ? undefined : [0, -100 * duplicatedFirstRow.length]
+                x: isPaused ? undefined : [0, -100 * duplicatedFirstRow.length / 3]
               }}
               transition={{
                 x: {
