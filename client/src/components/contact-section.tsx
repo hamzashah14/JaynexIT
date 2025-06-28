@@ -1,61 +1,15 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useToast } from "@/hooks/use-toast";
-import { insertContactSubmissionSchema, type InsertContactSubmission } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { AnimatedTooltip } from "./ui/animated-tooltip";
 
 export function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { toast } = useToast();
-  const queryClient = useQueryClient();
-
-  const form = useForm<InsertContactSubmission>({
-    resolver: zodResolver(insertContactSubmissionSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      subject: "",
-      message: "",
-    },
-  });
-
-  const mutation = useMutation({
-    mutationFn: async (data: InsertContactSubmission) => {
-      const response = await apiRequest("POST", "/api/contact", data);
-      return response.json();
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you as soon as possible.",
-      });
-      form.reset();
-      queryClient.invalidateQueries({ queryKey: ["/api/contact"] });
-    },
-    onError: (error: Error) => {
-      toast({
-        title: "Error sending message",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
-
-  const onSubmit = (data: InsertContactSubmission) => {
-    mutation.mutate(data);
-  };
 
   const contactInfo = [
     {
@@ -75,7 +29,32 @@ export function ContactSection() {
     },
   ];
 
-
+  const teamMembers = [
+    {
+      id: 1,
+      name: "Abdullah",
+      designation: "Frontend Developer",
+      image: "https://randomuser.me/api/portraits/men/10.jpg",
+    },
+    {
+      id: 2,
+      name: "Faran Alam",
+      designation: "Lead Developer",
+      image: "https://randomuser.me/api/portraits/men/20.jpg",
+    },
+    {
+      id: 3,
+      name: "Hamza",
+      designation: "Backend Developer",
+      image: "https://randomuser.me/api/portraits/men/30.jpg",
+    },
+    {
+      id: 4,
+      name: "Nouman",
+      designation: "UI/UX Designer",
+      image: "https://randomuser.me/api/portraits/men/40.jpg",
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -95,6 +74,8 @@ export function ContactSection() {
       transition: { duration: 0.6, ease: "easeOut" },
     },
   };
+
+  // UI only, no form logic
 
   return (
     <section id="contact" className="py-20 bg-background">
@@ -123,141 +104,66 @@ export function ContactSection() {
           <motion.div variants={itemVariants} className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold mb-6">Get the latest information</h3>
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={info.title}
-                    variants={itemVariants}
-                    className="flex items-center space-x-4"
-                  >
-                    <div className="w-12 h-12 bg-primary text-primary-foreground rounded-lg flex items-center justify-center">
-                      <info.icon className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <div className="font-semibold">{info.title}</div>
-                      <div className="text-muted-foreground">{info.details}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* World Map Section */}
-            <div className="mt-8">
-              <div className="relative bg-blue-50 dark:bg-blue-900/20 p-6 rounded-2xl">
-                {/* Simple World Map SVG */}
-                <svg 
-                  viewBox="0 0 400 200" 
-                  className="w-full h-40 text-blue-600 dark:text-blue-400"
-                  fill="currentColor"
+              <div className="space-y-8">
+              {contactInfo.map((info) => (
+                <motion.div
+                  key={info.title}
+                  variants={itemVariants}
+                  className="flex items-center space-x-4"
                 >
-                  {/* Continents simplified shapes */}
-                  <path d="M50 80 Q60 70, 80 75 L100 85 Q110 90, 120 85 L140 80 Q150 85, 160 80 L180 85 Q190 80, 200 85 L220 80 Q230 85, 250 80 L270 85 Q280 90, 300 85 L320 80 Q330 75, 350 80 L50 80 Z" opacity="0.6"/>
-                  <path d="M60 100 Q70 95, 90 100 L110 110 Q120 115, 140 110 L160 105 Q170 100, 190 105 L210 110 Q220 115, 240 110 L260 105 Q270 100, 290 105 L310 110 Q320 105, 340 110 L60 100 Z" opacity="0.4"/>
-                  <path d="M70 130 Q80 125, 100 130 L120 140 Q130 145, 150 140 L170 135 Q180 130, 200 135 L220 140 Q230 145, 250 140 L270 135 Q280 130, 300 135 L320 140 Q330 135, 350 140 L70 130 Z" opacity="0.8"/>
-                </svg>
-                
-                {/* Vector Arrow pointing to location */}
-                <div className="absolute top-16 left-32">
-                  <div className="relative">
-                    {/* Arrow */}
-                    <svg width="30" height="30" className="text-red-500">
-                      <path d="M15 5 L25 15 L20 15 L20 25 L10 25 L10 15 L5 15 Z" fill="currentColor"/>
-                    </svg>
-                    
-                    {/* "Here we are" banner */}
-                    <div className="absolute -top-8 -left-8 bg-red-500 text-white px-3 py-1 rounded-lg text-sm font-semibold whitespace-nowrap">
-                      Here we are
-                    </div>
+                  <div className="w-12 h-12 bg-primary text-primary-foreground rounded-lg flex items-center justify-center">
+                    {/* Icon placeholder */}
+                    <info.icon className="w-6 h-6 text-primary-foreground" />
                   </div>
+                  <div>
+                    <div className="font-semibold">{info.title}</div>
+                    <div className="text-muted-foreground">{info.details}</div>
+                  </div>
+                </motion.div>
+              ))}
+
+              {/* Our Professional Team Members */}
+              <div className="mt-20">
+                <h3 className="text-xl font-semibold mb-6">Our Professional Team Members</h3>
+                <div className="flex mt-4 -space-x-4">
+                  <AnimatedTooltip items={teamMembers} />
                 </div>
-                
-                {/* Location marker */}
-                <div className="absolute top-20 left-36 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+              </div>
               </div>
             </div>
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-muted/50 dark:bg-muted/20 p-8 rounded-2xl border">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="firstName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>First Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter your first name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="lastName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Last Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter your last name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="firstName" className="block mb-2 font-medium text-gray-700 dark:text-gray-300">First Name</label>
+                  <Input id="firstName" placeholder="Enter your first name" />
                 </div>
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email Address</FormLabel>
-                      <FormControl>
-                        <Input type="email" placeholder="Enter your email address" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Subject</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Enter subject" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Message</FormLabel>
-                      <FormControl>
-                        <Textarea rows={4} placeholder="Enter your message" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={mutation.isPending}
-                >
-                  {mutation.isPending ? "Sending..." : "Send Message"}
-                  <Send className="ml-2 h-5 w-5" />
-                </Button>
-              </form>
-            </Form>
+                <div>
+                  <label htmlFor="lastName" className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Last Name</label>
+                  <Input id="lastName" placeholder="Enter your last name" />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="email" className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Email Address</label>
+                <Input id="email" type="email" placeholder="Enter your email address" />
+              </div>
+              <div>
+                <label htmlFor="subject" className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Subject</label>
+                <Input id="subject" placeholder="Enter subject" />
+              </div>
+              <div>
+                <label htmlFor="message" className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Message</label>
+                <Textarea id="message" rows={4} placeholder="Enter your message" />
+              </div>
+              <Button
+                type="submit"
+                className="w-full"
+              >
+                Send Message
+              </Button>
+            </form>
           </motion.div>
         </motion.div>
       </div>

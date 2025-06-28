@@ -38,7 +38,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white mb-8"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white mb-8"
           >
             Where <span className="text-blue-400">Creativity</span>
             <br />

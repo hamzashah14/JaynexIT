@@ -110,20 +110,8 @@ export function WhyChooseUsSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Get Quote Button & Features Grid */}
+          {/* Right Side - Features Grid */}
           <div className="space-y-8">
-            {/* Get Quote Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-end"
-            >
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 left-0 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl">
-                Get A Quote
-              </button>
-            </motion.div>
-
             {/* Features Grid */}
             <motion.div
               variants={containerVariants}

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Star } from "lucide-react";
 
 export function TestimonialsSection() {
@@ -11,54 +11,55 @@ export function TestimonialsSection() {
   const testimonials = [
     {
       rating: 5,
-      text: "TechFlow transformed our outdated website into a modern, user-friendly platform. The team's professionalism exceeded our expectations.",
-      author: "Bessie Cooper",
+      text: "Holy crap. @TechFlow is absolutely incredible. Most elegant backend as a service I've ever used. This is a dream.",
+      author: "Ken Rogers",
       position: "CEO, TechStart",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
     },
     {
       rating: 5,
-      text: "Excellent communication throughout the project. They delivered our mobile app ahead of schedule with outstanding quality.",
-      author: "Jenny Wilson", 
+      text: "Badass! TechFlow is amazing. literally saves our small team a whole engineer's worth of work constantly. The founders and everyone I've chatted with at TechFlow are just awesome people as well :)",
+      author: "Kenneth Cassel",
       position: "Owner, Furniture Store",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b332c2c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
     },
     {
       rating: 5,
-      text: "Amazing team to work with! They understood our requirements perfectly and delivered beyond our expectations.",
-      author: "Robert Johnson",
+      text: "Working with @TechFlow has been one of the best dev experiences I've had lately. Incredibly easy to set up, great documentation, and so many fewer hoops to jump through than the competition.",
+      author: "Alex Thompson",
       position: "CTO, StartupCo",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
     },
     {
       rating: 5,
-      text: "Professional, efficient, and creative. TechFlow helped us achieve our digital transformation goals seamlessly.",
-      author: "Sarah Davis",
+      text: "Using @TechFlow I'm really impressed on the power of this platform. The team is quick with fixes and sql in general. Can't doubt this product works perfectly as advertised, rock-solid product as a service.",
+      author: "Paolo Ricciuti",
       position: "Marketing Director",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
     },
     {
       rating: 5,
-      text: "Outstanding service and support. The team was responsive and delivered exactly what we needed on time.",
-      author: "Michael Brown",
+      text: "Working with TechFlow is just fun. It makes working with a DB so much easier.",
+      author: "Brian Mitchell",
       position: "Founder, InnovateTech",
       avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
     },
     {
       rating: 5,
-      text: "Incredible attention to detail and user experience. Our new platform has significantly improved our business operations.",
+      text: "@TechFlow is truly 🔥. Incredible attention to detail and user experience. Our new platform has significantly improved our business operations.",
       author: "Emily Wilson",
       position: "Product Manager",
       avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
     },
   ];
 
-  // Split testimonials into two rows
+  // Create multiple rows with different testimonials
   const firstRow = testimonials.slice(0, 3);
   const secondRow = testimonials.slice(3, 6);
 
-  const duplicatedFirstRow = [...firstRow, ...firstRow, ...firstRow];
-  const duplicatedSecondRow = [...secondRow, ...secondRow, ...secondRow];
+  // Create seamless infinite arrays
+  const infiniteFirstRow = [...firstRow, ...firstRow, ...firstRow, ...firstRow];
+  const infiniteSecondRow = [...secondRow, ...secondRow, ...secondRow, ...secondRow];
 
   const TestimonialCard = ({ testimonial }: { testimonial: any }) => (
     <div className="flex-shrink-0 w-80 mx-4">
@@ -89,7 +90,7 @@ export function TestimonialsSection() {
   );
 
   return (
-    <section id="testimonials" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="testimonials" className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       <div className="max-w-8xl mx-auto px-8 sm:px-12 lg:px-16">
         <motion.div
           ref={ref}
@@ -107,33 +108,27 @@ export function TestimonialsSection() {
         </motion.div>
 
         <div 
-          className="relative space-y-8"
+          className="relative space-y-6"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Blur effects on sides */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background via-background/80 to-transparent backdrop-blur-sm z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background via-background/80 to-transparent backdrop-blur-sm z-10 pointer-events-none"></div>
-          
           {/* First Row - Moving Right to Left */}
           <div className="relative overflow-hidden">
             <motion.div
               className="flex"
-              animate={{
-                x: isPaused ? undefined : [0, -100 * duplicatedFirstRow.length / 3]
+              animate={isPaused ? {} : {
+                x: [0, -(344 * firstRow.length)]
               }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 30,
-                  ease: "linear",
-                },
+              transition={isPaused ? {} : {
+                duration: 25,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop",
               }}
             >
-              {duplicatedFirstRow.map((testimonial, index) => (
-                <TestimonialCard key={index} testimonial={testimonial} />
-              ))}
+          {infiniteFirstRow.map((testimonial, index) => (
+            <TestimonialCard key={`first-${index}`} testimonial={testimonial} />
+          ))}
             </motion.div>
           </div>
 
@@ -141,25 +136,27 @@ export function TestimonialsSection() {
           <div className="relative overflow-hidden">
             <motion.div
               className="flex"
-              animate={{
-                x: isPaused ? undefined : [-100 * duplicatedSecondRow.length, 0]
+              animate={isPaused ? {} : {
+                x: [-(344 * secondRow.length), 0]
               }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 30,
-                  ease: "linear",
-                },
+              transition={isPaused ? {} : {
+                duration: 25,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop",
               }}
             >
-              {duplicatedSecondRow.map((testimonial, index) => (
-                <TestimonialCard key={index} testimonial={testimonial} />
-              ))}
+          {infiniteSecondRow.map((testimonial, index) => (
+            <TestimonialCard key={`second-${index}`} testimonial={testimonial} />
+          ))}
             </motion.div>
           </div>
         </div>
       </div>
+
+      {/* Gradient overlays for fade effect */}
+      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 dark:from-gray-900 via-gray-50/90 dark:via-gray-900/90 to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 dark:from-gray-900 via-gray-50/90 dark:via-gray-900/90 to-transparent z-10 pointer-events-none"></div>
     </section>
   );
 }
