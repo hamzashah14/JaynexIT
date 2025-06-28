@@ -111,9 +111,9 @@ export function TestimonialsSection() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Blue gradient effects on sides */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-blue-600/20 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-blue-600/20 to-transparent z-10 pointer-events-none"></div>
+          {/* Blur effects on sides */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background via-background/80 to-transparent backdrop-blur-sm z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background via-background/80 to-transparent backdrop-blur-sm z-10 pointer-events-none"></div>
           
           {/* First Row - Moving Right to Left */}
           <div className="relative overflow-hidden">
@@ -126,7 +126,7 @@ export function TestimonialsSection() {
                 x: {
                   repeat: Infinity,
                   repeatType: "loop",
-                  duration: 40,
+                  duration: 30,
                   ease: "linear",
                 },
               }}
@@ -148,7 +148,7 @@ export function TestimonialsSection() {
                 x: {
                   repeat: Infinity,
                   repeatType: "loop",
-                  duration: 40,
+                  duration: 30,
                   ease: "linear",
                 },
               }}

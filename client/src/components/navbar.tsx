@@ -66,7 +66,7 @@ export function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 w-full z-50 glassmorphism transition-all duration-300"
+      className="fixed top-0 w-full z-50 bg-gray-900 dark:bg-gray-950 border-b border-gray-800 transition-all duration-300"
     >
       <div className="max-w-8xl mx-auto px-8 sm:px-12 lg:px-16">
         <div className="flex justify-between items-center h-16">
@@ -84,7 +84,7 @@ export function Navbar() {
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Zap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-blue-600">JAYNEX</span><span className="text-white dark:text-black">IT</span>
+              <span className="text-blue-600">JAYNEX</span><span className="text-white dark:text-white">IT</span>
             </button>
           </motion.div>
 
@@ -98,7 +98,7 @@ export function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
                   onClick={() => scrollToSection(item.href)}
-                  className="hover:text-primary transition-colors duration-200 text-foreground"
+                  className="hover:text-blue-400 transition-colors duration-200 text-gray-300"
                 >
                   {item.label}
                 </motion.button>
@@ -110,7 +110,7 @@ export function Navbar() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="hover:text-primary transition-colors duration-200 text-foreground flex items-center gap-1"
+                  className="hover:text-blue-400 transition-colors duration-200 text-gray-300 flex items-center gap-1"
                 >
                   Services <ChevronDown className="h-4 w-4" />
                 </motion.button>
@@ -228,12 +228,38 @@ export function Navbar() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 * index }}
-                    onClick={() => scrollToSection(item.href)}
+                    onClick={() => {
+                      scrollToSection(item.href);
+                      setIsMenuOpen(false);
+                    }}
                     className="block w-full text-left px-3 py-2 hover:text-primary transition-colors duration-200"
                   >
                     {item.label}
                   </motion.button>
                 ))}
+                
+                {/* Services Menu for Mobile */}
+                <div className="border-t border-border pt-2 mt-2">
+                  <div className="text-sm font-semibold px-3 py-2 text-muted-foreground">Services</div>
+                  {services.map((service, index) => (
+                    <button
+                      key={service.title}
+                      className="block w-full text-left px-6 py-2 text-sm hover:text-primary transition-colors duration-200"
+                    >
+                      {service.title}
+                    </button>
+                  ))}
+                </div>
+                
+                {/* Get Quote Button for Mobile */}
+                <div className="border-t border-border pt-2 mt-2">
+                  <Button 
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Get A Quote
+                  </Button>
+                </div>
               </div>
             </motion.div>
           )}

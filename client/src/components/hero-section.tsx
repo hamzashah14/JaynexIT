@@ -22,7 +22,7 @@ export function HeroSection() {
       
       {/* Content */}
       <div className="relative z-10 max-w-8xl mx-auto px-8 sm:px-12 lg:px-16 py-20">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl text-left">
           {/* Small tagline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -68,7 +68,7 @@ export function HeroSection() {
             <Button
               size="lg"
               onClick={() => scrollToSection("#about")}
-              className="bg-blue-600 hover:bg-blue-700 text-white border-0 h-14 px-8 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white border-0 h-10 px-8 text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-full"
             >
               Explore More →
             </Button>
@@ -76,7 +76,7 @@ export function HeroSection() {
               size="lg"
               variant="outline"
               onClick={() => scrollToSection("#services")}
-              className="h-14 px-8 text-lg font-semibold border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300 rounded-lg bg-transparent"
+              className="bg-transparent text-white underline hover:bg-transparent hover:text-white border-none shadow-none px-3 h-auto font-normal text-base"
             >
               View All Services
             </Button>
