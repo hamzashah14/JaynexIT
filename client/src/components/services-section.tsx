@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Palette, Code, Smartphone, TrendingUp, ShoppingCart, Cloud } from "lucide-react";
+import { Database, Shield, Zap, Globe, Headphones, Settings } from "lucide-react";
 
 export function ServicesSection() {
   const ref = useRef(null);
@@ -9,34 +9,34 @@ export function ServicesSection() {
 
   const services = [
     {
-      icon: Palette,
-      title: "UX/UI Design",
-      description: "Creating intuitive and visually stunning interfaces that enhance user experience and drive engagement.",
+      icon: Database,
+      title: "Data Analytics",
+      description: "Transform your data into actionable insights with advanced analytics and business intelligence solutions.",
     },
     {
-      icon: Code,
-      title: "Website Development",
-      description: "Building responsive, fast, and scalable websites using the latest technologies and best practices.",
+      icon: Shield,
+      title: "Cybersecurity",
+      description: "Protect your business with comprehensive security solutions and threat prevention strategies.",
     },
     {
-      icon: Smartphone,
-      title: "Mobile App Development",
-      description: "Developing native and cross-platform mobile applications that deliver exceptional user experiences.",
+      icon: Zap,
+      title: "Performance Optimization",
+      description: "Enhance your application performance with cutting-edge optimization techniques and monitoring.",
     },
     {
-      icon: TrendingUp,
-      title: "Digital Marketing",
-      description: "Boosting your online presence with strategic digital marketing campaigns and SEO optimization.",
+      icon: Globe,
+      title: "Global Solutions",
+      description: "Expand your reach worldwide with scalable international business solutions and localization.",
     },
     {
-      icon: ShoppingCart,
-      title: "E-commerce Solutions",
-      description: "Building powerful e-commerce platforms that drive sales and provide seamless shopping experiences.",
+      icon: Headphones,
+      title: "24/7 Support",
+      description: "Round-the-clock technical support and maintenance to keep your business running smoothly.",
     },
     {
-      icon: Cloud,
-      title: "Cloud Solutions",
-      description: "Implementing scalable cloud infrastructure and migration services for optimal performance and security.",
+      icon: Settings,
+      title: "Custom Integration",
+      description: "Seamlessly integrate your existing systems with modern solutions for improved efficiency.",
     },
   ];
 
@@ -70,10 +70,10 @@ export function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4">
-            Our <span className="gradient-text">Services</span>
+            Additional <span className="gradient-text">Services</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We provide to elevate your business with our comprehensive digital solutions
+            Comprehensive solutions to support and grow your business beyond development
           </p>
         </motion.div>
 
